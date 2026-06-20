@@ -1,0 +1,27 @@
+{
+  "name": "home-library-app",
+  "version": "1.0.0",
+  "description": "Домашняя библиотека — каталог книг с веб-интерфейсом для Серверов Linux",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "update": "./update.sh"
+  },
+  "keywords": [
+    "library",
+    "books",
+    "raspberry-pi",
+    "catalog",
+    "home-library"
+  ],
+  "author": "Serpent_bot Laboratory",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2010-hub/home-library-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/2010-hub/home-library-app/issues"
+  },
+  "homepage": "https://github.com/2010-hub/home-library-app#readme"
+}
