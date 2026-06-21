@@ -83,14 +83,17 @@
 
 <!--зависимости-->
 ## Зависимости
-Эта программа требует установки **Node.js**. Если вы заметили, что он данное ПО можно запустить на версии ниже, или он не работает на какой-либо версии, то напишите в [поддержку](https://github.com/2010-hub/home-library-app#поддержка)
-1. Установка Node.js
+Эта программа требует установки **Node.js**. Если вы заметили, что он данное ПО можно запустить на версии ниже, или он не работает на какой-либо версии, то напишите в [поддержку](https://github.com/2010-hub/home-library-app/issues/new/choose)
+**1. Установка Node.js**
    
-   ```curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -```
-   ```sudo apt install -y nodejs```
-2. Проверка установки
+```curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -```
+
+```sudo apt install -y nodejs```
+
+**2. Проверка установки**
    
-   ```node --version  # Должно быть v18.x.x```
-   ```npm --version   # Должно быть v9.x.x или выше```
+```node --version  # Должно быть v18.x.x```
+
+```npm --version   # Должно быть v9.x.x или выше```
 
 
