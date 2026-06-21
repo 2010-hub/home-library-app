@@ -213,7 +213,25 @@ const server = http.createServer((req, res) => {
             }
         });
         return;
+    }// ===== API: GET /api/version =====
+    if (pathname === '/api/version' && method === 'GET') {
+        try {
+            const packagePath = path.join(__dirname, 'package.json');
+            let version = '1.0.0';
+            if (fs.existsSync(packagePath)) {
+                const packageData = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
+                version = packageData.version || '1.0.0';
+            }
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ success: true, version: version }));
+        } catch (e) {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ success: true, version: '1.0.0' }));
+        }
+        return;
     }
+
+    
 
     // ===== ЛОГИН: читатель входит без пароля =====
     if (pathname === '/api/login' && method === 'POST') {
