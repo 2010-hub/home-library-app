@@ -973,6 +973,9 @@
         document.getElementById('updateStatus').textContent = '';
         document.getElementById('settingsModal').classList.add('active');
         document.body.style.overflow = 'hidden';
+
+        // Загружаем версию
+        loadVersion();
     }
 
     function closeSettings() {
