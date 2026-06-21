@@ -282,83 +282,63 @@ if (pathname === '/api/update' && method === 'POST') {
             const { repoUrl, branch } = JSON.parse(body);
             const { exec } = require('child_process');
             const fs = require('fs');
-            const path = require('path');
             
-            // Проверяем наличие git
+            // Проверяем git
             exec('git --version', (err) => {
                 if (err) {
                     res.writeHead(200, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify({ 
                         success: false, 
-                        error: '❌ Git не установлен. Установите: sudo apt install git' 
+                        error: '❌ Git не установлен' 
                     }));
                     return;
                 }
                 
-                // Проверяем, есть ли .git папка
                 if (!fs.existsSync(path.join(__dirname, '.git'))) {
                     res.writeHead(200, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify({ 
                         success: false, 
-                        error: '❌ Репозиторий не инициализирован. Выполните: git init' 
+                        error: '❌ Не git-репозиторий' 
                     }));
                     return;
                 }
                 
-                // Проверяем, есть ли remote origin
-                exec(`cd "${__dirname}" && git remote get-url origin`, (err, stdout) => {
-                    if (err || !stdout.trim()) {
-                        res.writeHead(200, { 'Content-Type': 'application/json' });
-                        res.end(JSON.stringify({ 
-                            success: false, 
-                            error: '❌ Не настроен удаленный репозиторий. Выполните: git remote add origin URL' 
-                        }));
-                        return;
-                    }
+                // Бэкап данных
+                const backupDir = path.join(__dirname, 'data_backup_' + Date.now());
+                exec(`cp -r "${__dirname}/data" "${backupDir}"`, (err) => {
+                    if (err) console.log('⚠️ Бэкап не создан');
                     
-                    // ===== 1. СОЗДАЕМ БЭКАП ДАННЫХ =====
-                    const backupDir = path.join(__dirname, 'data_backup_' + Date.now());
-                    exec(`cp -r "${__dirname}/data" "${backupDir}"`, (err) => {
-                        if (err) console.log('⚠️ Бэкап не создан');
+                    // Stash изменений
+                    exec(`cd "${__dirname}" && git stash`, () => {
                         
-                        // ===== 2. ОБНОВЛЯЕМ КОД =====
+                        // Обновление
                         exec(`cd "${__dirname}" && git pull ${repoUrl || 'origin'} ${branch || 'main'}`, (error, stdout, stderr) => {
-                            if (error) {
-                                res.writeHead(200, { 'Content-Type': 'application/json' });
-                                res.end(JSON.stringify({ 
-                                    success: false, 
-                                    error: stderr || error.message 
-                                }));
-                                return;
-                            }
                             
-                            // ===== 3. ВОССТАНАВЛИВАЕМ ДАННЫЕ =====
+                            // Восстановление данных
                             if (fs.existsSync(backupDir)) {
-                                exec(`cp -r "${backupDir}"/* "${__dirname}/data/"`, (err2) => {
-                                    if (err2) console.log('⚠️ Ошибка восстановления данных');
+                                exec(`cp -r "${backupDir}"/* "${__dirname}/data/"`, () => {
                                     exec(`rm -rf "${backupDir}"`);
                                 });
                             }
                             
-                            // ===== 4. ПЕРЕЗАПУСКАЕМ СЕРВЕР =====
-                            // Пробуем через systemd
-                            exec('sudo systemctl restart library-app', (err3) => {
-                                if (err3) {
-                                    // Если systemd нет - просто завершаем процесс (перезапустится сам)
-                                    res.writeHead(200, { 'Content-Type': 'application/json' });
-                                    res.end(JSON.stringify({ 
-                                        success: true, 
-                                        message: '✅ Обновление успешно! Перезапустите сервер вручную: node server.js' 
-                                    }));
-                                    return;
-                                }
-                                
-                                res.writeHead(200, { 'Content-Type': 'application/json' });
-                                res.end(JSON.stringify({ 
-                                    success: true, 
-                                    message: '✅ Обновление успешно! Сервер перезапущен.' 
-                                }));
-                            });
+                            // Восстановление stash
+                            exec(`cd "${__dirname}" && git stash pop`, () => {});
+                            
+                            // ===== ВАЖНО: СНАЧАЛА ОТВЕЧАЕМ БРАУЗЕРУ =====
+                            res.writeHead(200, { 'Content-Type': 'application/json' });
+                            res.end(JSON.stringify({ 
+                                success: true, 
+                                message: '✅ Обновление успешно! Сервер перезапускается...' 
+                            }));
+                            
+                            // ===== ПОТОМ ПЕРЕЗАПУСКАЕМ СЕРВЕР =====
+                            setTimeout(() => {
+                                exec('sudo systemctl restart library-app', (err3) => {
+                                    if (err3) {
+                                        console.log('⚠️ Ошибка перезапуска:', err3);
+                                    }
+                                });
+                            }, 1000);
                         });
                     });
                 });
