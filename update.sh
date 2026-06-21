@@ -24,4 +24,3 @@ echo "🔄 Перезапуск сервера..."
 sudo systemctl restart library-app
 
 echo "✅ Обновление завершено!"
-echo "🌐 Откройте: http://$(hostname -I | awk '{print $1}'):4002"
