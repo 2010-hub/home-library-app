@@ -1,7 +1,7 @@
 # Home Library App
 Веб-приложение для каталогизации личной коллекции книг. Разрабатывалось для работы на **Raspberry Pi**, но может запускаться на любом устройстве с Node.js <!-- описание репозитория -->
 <!--Блок информации о репозитории в бейджах-->
-![Static Badge](https://img.shields.io/badge/by-SerpentBot_Laboratory-purple)
+![Static Badge](https://img.shields.io/badge/by-SerpentBot_Laboratory-purple?logo=github)
 ![GitHub top language](https://img.shields.io/github/languages/top/2010-hub/home-library-app)
 ![GitHub](https://img.shields.io/github/license/2010-hub/home-library-app)
 ![GitHub Repo stars](https://img.shields.io/github/stars/2010-hub/home-library-app)
