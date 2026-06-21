@@ -365,7 +365,17 @@
                 </button>
                 <div class="settings-danger">⚠️ Это действие необратимо. Все книги будут удалены.</div>
             </div>
-            
+            <!-- ===== ВЕРСИЯ ===== -->
+            <hr class="settings-divider">
+
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 4px;">
+                <span style="font-size:13px;color:#6b7280;">
+                    <i class="fas fa-code-branch"></i> Версия приложения
+                </span>
+                <span id="appVersion" style="font-size:13px;font-weight:600;color:#4f46e5;">
+                    <i class="fas fa-spinner fa-spin"></i> Загрузка...
+                </span>
+            </div>
             <div class="settings-actions">
                 <button type="button" class="btn btn-outline" onclick="closeSettings()">Отмена</button>
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Сохранить</button>
