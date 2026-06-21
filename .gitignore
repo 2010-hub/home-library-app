@@ -24,6 +24,8 @@ Thumbs.db
 .vscode/
 *.iml
 
+README.md
+
 tmp/
 temp/
 *.tmp
