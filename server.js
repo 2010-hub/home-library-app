@@ -273,25 +273,103 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    if (pathname === '/api/update' && method === 'POST') {
-        let body = '';
-        req.on('data', chunk => body += chunk);
-        req.on('end', () => {
-            try {
-                const { repoUrl, branch } = JSON.parse(body);
-                res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ 
-                    success: true, 
-                    message: '✅ Функция обновления будет доступна после настройки git' 
-                }));
-            } catch (e) {
-                res.writeHead(400, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ success: false, error: e.message }));
-            }
-        });
-        return;
-    }
-
+    // ===== API: POST /api/update =====
+if (pathname === '/api/update' && method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+        try {
+            const { repoUrl, branch } = JSON.parse(body);
+            const { exec } = require('child_process');
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Проверяем наличие git
+            exec('git --version', (err) => {
+                if (err) {
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ 
+                        success: false, 
+                        error: '❌ Git не установлен. Установите: sudo apt install git' 
+                    }));
+                    return;
+                }
+                
+                // Проверяем, есть ли .git папка
+                if (!fs.existsSync(path.join(__dirname, '.git'))) {
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ 
+                        success: false, 
+                        error: '❌ Репозиторий не инициализирован. Выполните: git init' 
+                    }));
+                    return;
+                }
+                
+                // Проверяем, есть ли remote origin
+                exec(`cd "${__dirname}" && git remote get-url origin`, (err, stdout) => {
+                    if (err || !stdout.trim()) {
+                        res.writeHead(200, { 'Content-Type': 'application/json' });
+                        res.end(JSON.stringify({ 
+                            success: false, 
+                            error: '❌ Не настроен удаленный репозиторий. Выполните: git remote add origin URL' 
+                        }));
+                        return;
+                    }
+                    
+                    // ===== 1. СОЗДАЕМ БЭКАП ДАННЫХ =====
+                    const backupDir = path.join(__dirname, 'data_backup_' + Date.now());
+                    exec(`cp -r "${__dirname}/data" "${backupDir}"`, (err) => {
+                        if (err) console.log('⚠️ Бэкап не создан');
+                        
+                        // ===== 2. ОБНОВЛЯЕМ КОД =====
+                        exec(`cd "${__dirname}" && git pull ${repoUrl || 'origin'} ${branch || 'main'}`, (error, stdout, stderr) => {
+                            if (error) {
+                                res.writeHead(200, { 'Content-Type': 'application/json' });
+                                res.end(JSON.stringify({ 
+                                    success: false, 
+                                    error: stderr || error.message 
+                                }));
+                                return;
+                            }
+                            
+                            // ===== 3. ВОССТАНАВЛИВАЕМ ДАННЫЕ =====
+                            if (fs.existsSync(backupDir)) {
+                                exec(`cp -r "${backupDir}"/* "${__dirname}/data/"`, (err2) => {
+                                    if (err2) console.log('⚠️ Ошибка восстановления данных');
+                                    exec(`rm -rf "${backupDir}"`);
+                                });
+                            }
+                            
+                            // ===== 4. ПЕРЕЗАПУСКАЕМ СЕРВЕР =====
+                            // Пробуем через systemd
+                            exec('sudo systemctl restart library-app', (err3) => {
+                                if (err3) {
+                                    // Если systemd нет - просто завершаем процесс (перезапустится сам)
+                                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                                    res.end(JSON.stringify({ 
+                                        success: true, 
+                                        message: '✅ Обновление успешно! Перезапустите сервер вручную: node server.js' 
+                                    }));
+                                    return;
+                                }
+                                
+                                res.writeHead(200, { 'Content-Type': 'application/json' });
+                                res.end(JSON.stringify({ 
+                                    success: true, 
+                                    message: '✅ Обновление успешно! Сервер перезапущен.' 
+                                }));
+                            });
+                        });
+                    });
+                });
+            });
+        } catch (e) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ success: false, error: e.message }));
+        }
+    });
+    return;
+}
     if (pathname === '/' || pathname === '/index.html') {
         const htmlPath = path.join(__dirname, 'index.html');
         fs.readFile(htmlPath, (err, data) => {
