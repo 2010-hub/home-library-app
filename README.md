@@ -7,8 +7,6 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/2010-hub/home-library-app)
 ![GitHub issues](https://img.shields.io/github/issues/2010-hub/home-library-app)
 
-
-
 <!--Пользовательская документация-->
 ## Документация
 
@@ -96,4 +94,12 @@
 
 ```npm --version   # Должно быть v9.x.x или выше```
 
+## Скриншоты
+![Скриншот 1](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_G6IuM7PrVw.jpg)
+![Скриншот 2](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_UdizP9bu5z.jpg)
+![Скриншот 3](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_BaGquLesaq.jpg)
+![Скриншот 4](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_eTKMlW3eFn.jpg)
+![Скриншот 5](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_sICqD0iACs.jpg)
+![Скриншот 6](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_ePWaanKidc.jpg)
+![Скриншот 7](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_NoTCyDN9QD.jpg)
 
