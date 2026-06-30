@@ -342,15 +342,14 @@ if (pathname === '/api/update' && method === 'POST') {
                             // Восстановление stash
                             exec(`cd "${__dirname}" && git stash pop`, () => {});
                             
-                            // ===== ВАЖНО: СНАЧАЛА ОТВЕЧАЕМ БРАУЗЕРУ =====
+                            
                             res.writeHead(200, { 'Content-Type': 'application/json' });
                             res.end(JSON.stringify({ 
                                 success: true, 
                                 message: '✅ Обновление успешно! Сервер перезапускается...' 
                             }));
                             
-                            // ===== ПОТОМ ПЕРЕЗАПУСКАЕМ СЕРВЕР =====
-                            setTimeout(() => {
+                            {
                                 exec('sudo systemctl restart library-app', (err3) => {
                                     if (err3) {
                                         console.log('⚠️ Ошибка перезапуска:', err3);
