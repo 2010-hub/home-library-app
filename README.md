@@ -1,4 +1,4 @@
-[![SVG Banners](https://svg-banners.vercel.app/api?type=luminance&text1=Home-Library-App%20&width=800&height=210)](https://github.com/Akshay090/svg-banners)
+![SVG Banners](https://svg-banners.vercel.app/api?type=luminance&text1=Home-Library-App%20&width=1200&height=210)
 
 ***English version of*** [***README.md***](https://github.com/2010-hub/home-library-app/blob/2f920dcebaf36658c8e360efa6ac0485d99f0ed1/README_EN.md). Веб-приложение для каталогизации личной коллекции книг. Разрабатывалось для работы на **Raspberry Pi**, но может запускаться на любом устройстве с Node.js. Если у Вас нет сервера, Вы можете установить нашу [**Десктопную версию приложения**](https://github.com/2010-hub/home-library-desktop). **Наш канал в Telegram:** ***https://t.me/Serpent_lab***<!-- описание репозитория -->
 <!--Блок информации о репозитории в бейджах-->
