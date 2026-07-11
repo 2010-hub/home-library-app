@@ -1,4 +1,5 @@
-# Home Library App
+[![SVG Banners](https://svg-banners.vercel.app/api?type=luminance&text1=Home-Library-App%20&width=800&height=210)](https://github.com/Akshay090/svg-banners)
+
 A web app for cataloging your personal book collection. It was developed for Raspberry Pi, but can run on any device running Node.js. If you don't have a server, you can install our [Desktop version of the app](https://github.com/2010-hub/home-library-desktop). **Our Telegram channel:** ***https://t.me/Serpent_lab***<!-- repository description -->
 <!-- Repository information block in badges -->
 ![Static Badge](https://img.shields.io/badge/by-SerpentBot_Laboratory-purple?logo=github)
