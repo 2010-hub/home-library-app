@@ -1,6 +1,6 @@
 ![SVG Banners](https://svg-banners.vercel.app/api?type=luminance&text1=Home-Library-App%20&width=1200&height=210)
 
-***English version of*** [***README.md***](https://github.com/2010-hub/home-library-app/blob/2f920dcebaf36658c8e360efa6ac0485d99f0ed1/README_EN.md). Веб-приложение для каталогизации личной коллекции книг. Разрабатывалось для работы на **Raspberry Pi**, но может запускаться на любом устройстве с Node.js. Если у Вас нет сервера, Вы можете установить нашу [**Десктопную версию приложения**](https://github.com/2010-hub/home-library-desktop). **Наш канал в Telegram:** ***https://t.me/Serpent_lab***<!-- описание репозитория -->
+***English version of*** [***README.md***](https://github.com/2010-hub/home-library-app/blob/0982cca2aacd11c3e19f6b8c422d0e41fba51aef/README_EN.md). Веб-приложение для каталогизации личной коллекции книг. Разрабатывалось для работы на **Raspberry Pi**, но может запускаться на любом устройстве с Node.js. Если у Вас нет сервера, Вы можете установить нашу [**Десктопную версию приложения**](https://github.com/2010-hub/home-library-desktop). **Наш канал в Telegram:** ***https://t.me/Serpent_lab***<!-- описание репозитория -->
 <!--Блок информации о репозитории в бейджах-->
 ![Static Badge](https://img.shields.io/badge/by-SerpentBot_Laboratory-purple?logo=github)
 ![GitHub top language](https://img.shields.io/github/languages/top/2010-hub/home-library-app)
@@ -97,11 +97,5 @@
 ```npm --version   # Должно быть v9.x.x или выше```
 
 ## Скриншоты
-![Скриншот 1](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_G6IuM7PrVw.jpg)
-![Скриншот 2](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_UdizP9bu5z.jpg)
-![Скриншот 3](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_BaGquLesaq.jpg)
-![Скриншот 4](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_eTKMlW3eFn.jpg)
-![Скриншот 5](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_sICqD0iACs.jpg)
-![Скриншот 6](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_ePWaanKidc.jpg)
-![Скриншот 7](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_NoTCyDN9QD.jpg)
+Скриншоты версии программы можно посмотреть в [**релизе приложения**](https://github.com/2010-hub/home-library-app/releases)
 
