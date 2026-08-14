@@ -94,10 +94,4 @@ This program requires **Node.js** to be installed. If you notice that this softw
 ```npm --version # Must be v9.x.x or higher```
 
 ## Screenshots
-![Screenshot 1](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_G6IuM7PrVw.jpg)
-![Screenshot 2](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_UdizP9bu5z.jpg)
-![Screenshot 3](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_BaGquLesaq.jpg)
-![Screenshot 4](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_eTKMlW3eFn.jpg)
-![Screenshot 5](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_sICqD0iACs.jpg)
-![Screenshot 6](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_ePWaanKidc.jpg)
-![Screenshot 7](https://github.com/2010-hub/home-library-app/blob/b750ec4b8d12c1b77aa6c0c3815fe8dbc37fefa5/images/browser_NoTCyDN9QD.jpg)
+Screenshots of a version of the program can be found in the [**application release**](https://github.com/2010-hub/home-library-app/releases)
